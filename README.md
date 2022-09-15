@@ -5,19 +5,15 @@ Throughout this project, I was tasked with auditing the results of an election f
 ## Results
 * After importing the CSV file into Python I was able to iterate through every row in the dataset after the header by simply adding one each row:
 
-    `reader = csv.read(election_data)
-
+    ```reader = csv.read(election_data)
     header = next(reader)
-
     for row in reader:
-
         total_votes = total_votes + 1
-		
-    print(total_votes)`
+    print(total_votes)```
 
 * To determine the total number of votes and the percentagee of total votes for each county you must first figure out how many counties were involved in this election. Therefore, you must create a new list and set it equal to zero. This list is called **county_names**. Then to interate through the data, adding county to the list with the condition that the county_name is not in **county_names**. While it does that, it also compiles votes that correspond to the county and is stored as a dictionary called **votes_per_county**. 
 
-    `county_names = []
+    ```county_names = []
 	votes_per_county = {}
 	    for row in reader:
 		    if county_name not in county_names:
@@ -29,17 +25,17 @@ Throughout this project, I was tasked with auditing the results of an election f
 		for county in county_names:
 	        county_votes = votes_per_county[county]
     	    county_percentage = '{:.1%}'.format(county_votes / total_votes)
-	        print(f"{county}: {county_percentage} ({county_votes:,})")`
+	        print(f"{county}: {county_percentage} ({county_votes:,})")```
 
 * To determine which county had the largest number of votes, you use the following conditional statement: 
 
-    `if (county_votes > winning_county_count):
+    ```if (county_votes > winning_county_count):
         winning_county = county
-    print(f"Largest County Turnout: {winning_county}")`
+    print(f"Largest County Turnout: {winning_county}")```
 
 * Like the previously point, you do the following to determine the number of votes peer candidate:
 
-    `candidate_results = (
+    ```candidate_results = (
 	            f"\nVotes Per Candidate:\n"
 	    for candidate_name in candidate_votes:
 	        votes = candidate_votes.get(candidate_name)
@@ -50,13 +46,13 @@ Throughout this project, I was tasked with auditing the results of an election f
 	            winning_count = votes
 	            winning_candidate = candidate_name
 	            winning_percentage = vote_percentage
-	    print(candidate_results)`
+	    print(candidate_results)```
 
 * To determine which candidate won the election you simply print a winning summary based on **winning_candidate**, **winning_count**, and **winning_percentage** from the code above. 
 
-    `   Winner: Diana DeGette
+    ```Winner: Diana DeGette
     Winning Vote Count: 272,892
-    Winning Percentage: 73.8%`
+    Winning Percentage: 73.8%```
 
 ## Summary
 The good thing this particular scripts and scripts like it is that it shouldn't need any modifications to run other data samples **as long as** the data is formatted the same as **election_results.csv**. To avoid this, improvements could be made to make the script more dynamic with different datasets. For example:
