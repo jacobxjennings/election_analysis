@@ -6,14 +6,18 @@ Throughout this project, I was tasked with auditing the results of an election f
 * After importing the CSV file into Python I was able to iterate through every row in the dataset after the header by simply adding one each row:
 
     `reader = csv.read(election_data)
+
     header = next(reader)
+
     for row in reader:
+
         total_votes = total_votes + 1
+		
     print(total_votes)`
 
 * To determine the total number of votes and the percentagee of total votes for each county you must first figure out how many counties were involved in this election. Therefore, you must create a new list and set it equal to zero. This list is called **county_names**. Then to interate through the data, adding county to the list with the condition that the county_name is not in **county_names**. While it does that, it also compiles votes that correspond to the county and is stored as a dictionary called **votes_per_county**. 
 
-    'county_names = []
+    `county_names = []
 	votes_per_county = {}
 	    for row in reader:
 		    if county_name not in county_names:
@@ -25,7 +29,7 @@ Throughout this project, I was tasked with auditing the results of an election f
 		for county in county_names:
 	        county_votes = votes_per_county[county]
     	    county_percentage = '{:.1%}'.format(county_votes / total_votes)
-	        print(f"{county}: {county_percentage} ({county_votes:,})")'
+	        print(f"{county}: {county_percentage} ({county_votes:,})")`
 
 * To determine which county had the largest number of votes, you use the following conditional statement: 
 
